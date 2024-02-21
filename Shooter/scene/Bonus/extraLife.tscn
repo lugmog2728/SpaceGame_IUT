@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://4wlrn3dnb7fb"]
+
+[ext_resource type="Script" path="res://Shooter/script/bonus/extraLife.gd" id="1_fpm1v"]
+[ext_resource type="Texture2D" uid="uid://cual2pgxqturo" path="res://Ressources/sprite/shooter/bonus/HP_Icon.png" id="2_76p0x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lc6qb"]
+radius = 7.8874
+
+[node name="extraLife" type="Node2D"]
+script = ExtResource("1_fpm1v")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(0.137191, 0.223355)
+scale = Vector2(0.303471, 0.319151)
+texture = ExtResource("2_76p0x")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.14106, 0.972202)
+shape = SubResource("CircleShape2D_lc6qb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

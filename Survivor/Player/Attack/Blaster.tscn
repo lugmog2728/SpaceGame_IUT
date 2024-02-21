@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8bxv586gma8q"]
+
+[ext_resource type="Script" path="res://Survivor/Player/Attack/Blaster.gd" id="1_12mnq"]
+[ext_resource type="Texture2D" uid="uid://gc3fvxa701b8" path="res://Ressources/Survivor/Texture/Items/Weapons/Blaster.png" id="2_boceq"]
+[ext_resource type="AudioStream" uid="uid://cdne5b7cfxcsc" path="res://Ressources/Survivor/Audio/SoundEffect/ice.wav" id="3_xduei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4tiy"]
+size = Vector2(6.36396, 33.234)
+
+[node name="Blaster" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_12mnq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_boceq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.500001, -0.999999)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_p4tiy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="snd_play" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xduei")
+volume_db = -10.0
+pitch_scale = 5.0
+autoplay = true
+bus = &"FX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

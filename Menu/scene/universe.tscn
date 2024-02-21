@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqf7bttv4bq2e"]
+
+[ext_resource type="Script" path="res://Menu/script/universe.gd" id="1_i6w5d"]
+[ext_resource type="PackedScene" uid="uid://b70u6t0c2v85g" path="res://Menu/scene/interface.tscn" id="2_w0xw0"]
+[ext_resource type="AudioStream" uid="uid://c1suipx0cyb7t" path="res://Ressources/sound/Star_wars.mp3" id="3_a0mjx"]
+
+[sub_resource type="Environment" id="Environment_havmt"]
+background_mode = 1
+
+[node name="Universe" type="Node3D"]
+script = ExtResource("1_i6w5d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_havmt")
+
+[node name="menu" parent="." instance=ExtResource("2_w0xw0")]
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a0mjx")
+autoplay = true
+bus = &"Music"
+
+[connection signal="finished" from="Audio" to="." method="_on_audio_finished"]

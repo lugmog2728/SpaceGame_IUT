@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqnbot57hudb0"]
+
+[ext_resource type="Texture2D" uid="uid://b8jmrsjn3m8rq" path="res://Ressources/sprite/background/earth_1.png" id="1_2wtv3"]
+[ext_resource type="PackedScene" uid="uid://dtojyds3v1vsw" path="res://Game/scene/GUI/game_GUI.tscn" id="1_milhm"]
+[ext_resource type="Script" path="res://Game/script/game.gd" id="1_pxsu4"]
+[ext_resource type="Texture2D" uid="uid://cl0741i22qot7" path="res://Ressources/sprite/background/earth_2.png" id="3_c14nh"]
+[ext_resource type="Texture2D" uid="uid://bsu5oakyvdana" path="res://Ressources/sprite/background/earth_3.png" id="4_m1a2h"]
+[ext_resource type="PackedScene" uid="uid://c4p44hhphfach" path="res://Game/scene/vaisseau.tscn" id="7_fh0gr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_06tq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2wtv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c14nh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m1a2h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o0lq"]
+size = Vector2(835, 629)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_pxsu4")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(401, 300)
+scale = Vector2(0.505, 0.571023)
+sprite_frames = SubResource("SpriteFrames_06tq4")
+frame_progress = 0.111526
+
+[node name="vaisseau" parent="." instance=ExtResource("7_fh0gr")]
+position = Vector2(409, 306)
+
+[node name="GUI" parent="." instance=ExtResource("1_milhm")]
+top_level = true
+layout_direction = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 801.0
+offset_bottom = 599.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(389, 57)
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(13.5, 241.5)
+shape = SubResource("RectangleShape2D_6o0lq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

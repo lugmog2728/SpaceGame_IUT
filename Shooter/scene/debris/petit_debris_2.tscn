@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cajx7n3rmkruy"]
+
+[ext_resource type="Script" path="res://Shooter/script/debris/petit_debris.gd" id="1_syyk1"]
+[ext_resource type="Texture2D" uid="uid://bi52h1283mrsk" path="res://Ressources/sprite/shooter/debris/trash_2.png" id="2_y36rb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygluu"]
+size = Vector2(62, 26)
+
+[node name="Petit_debris" type="RigidBody2D"]
+position = Vector2(-34, -17)
+collision_layer = 2
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_syyk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34, 16.25)
+shape = SubResource("RectangleShape2D_ygluu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(34, 16.25)
+scale = Vector2(0.442857, 0.297753)
+texture = ExtResource("2_y36rb")
+
+[node name="spawn_bonus" type="Marker2D" parent="."]
+position = Vector2(34, 17)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://csrl6noxuwcpd"]
+
+[sub_resource type="Gradient" id="Gradient_usivw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0vlyo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3ntiy"]
+seamless = true
+color_ramp = SubResource("Gradient_usivw")
+noise = SubResource("FastNoiseLite_0vlyo")
+
+[resource]
+albedo_texture = SubResource("NoiseTexture2D_3ntiy")

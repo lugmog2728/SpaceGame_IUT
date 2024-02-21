@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgihbo3qp4na2"]
+
+[ext_resource type="Script" path="res://Game/script/debris/moyen_debris.gd" id="1_ut6be"]
+[ext_resource type="Texture2D" uid="uid://c7iu1w43d2qma" path="res://Ressources/sprite/debris/trash_5.png" id="2_8plxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygluu"]
+size = Vector2(89.125, 39.8438)
+
+[node name="Moyen_debris" type="RigidBody2D"]
+position = Vector2(-46, -23)
+collision_layer = 2
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_ut6be")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(46.4375, 23.0781)
+shape = SubResource("RectangleShape2D_ygluu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(44.125, 22.875)
+scale = Vector2(0.430751, 0.435567)
+texture = ExtResource("2_8plxb")
+
+[node name="spawn1" type="Marker2D" parent="."]
+position = Vector2(114, 7)
+
+[node name="spawn2" type="Marker2D" parent="."]
+position = Vector2(-9, 43)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

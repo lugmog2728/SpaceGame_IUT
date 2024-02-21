@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=3 uid="uid://bxbgeimqxgpqn"]
+
+[ext_resource type="Texture2D" uid="uid://cevx5k7nvq35s" path="res://Ressources/sprite/shooter/global/Window.png" id="1_3dhys"]
+[ext_resource type="Script" path="res://Shooter/script/GUI/pause_panel.gd" id="2_m0su6"]
+[ext_resource type="Texture2D" uid="uid://calwvfyllk4en" path="res://Ressources/sprite/shooter/global/button.png" id="3_sng3f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qypb"]
+font_size = 36
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f20se"]
+texture = ExtResource("3_sng3f")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvir7"]
+texture = ExtResource("3_sng3f")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22cee"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7gtw"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r6h1v"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k20xb"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2ljg"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty24p"]
+texture = ExtResource("3_sng3f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26s01"]
+texture = ExtResource("3_sng3f")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcevv"]
+texture = ExtResource("3_sng3f")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[node name="pause_panel" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="rect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(472, 365)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -182.5
+offset_right = 236.0
+offset_bottom = 182.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = ExtResource("1_3dhys")
+expand_mode = 1
+script = ExtResource("2_m0su6")
+
+[node name="Label" type="Label" parent="rect"]
+layout_mode = 0
+offset_right = 473.0
+offset_bottom = 67.0
+text = "Pause "
+label_settings = SubResource("LabelSettings_6qypb")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="rect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -76.0
+offset_right = 107.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="reprendre" type="Button" parent="rect/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_f20se")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nvir7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_22cee")
+theme_override_styles/focus = SubResource("StyleBoxTexture_j7gtw")
+text = "Reprendre"
+
+[node name="saveQuit" type="Button" parent="rect/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_f20se")
+theme_override_styles/hover = SubResource("StyleBoxTexture_r6h1v")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k20xb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_s2ljg")
+text = "Sauvegarder et quitter"
+
+[node name="quit" type="Button" parent="rect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_f20se")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ty24p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_26s01")
+theme_override_styles/focus = SubResource("StyleBoxTexture_hcevv")
+text = "Quitter"
+
+[connection signal="pressed" from="rect/VBoxContainer/reprendre" to="rect" method="_on_reprendre_pressed"]
+[connection signal="pressed" from="rect/VBoxContainer/saveQuit" to="rect" method="_on_save_quit_pressed"]
+[connection signal="pressed" from="rect/VBoxContainer/quit" to="rect" method="_on_quit_pressed"]

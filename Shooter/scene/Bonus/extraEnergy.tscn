@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dufdyoavv5g4c"]
+
+[ext_resource type="Script" path="res://Shooter/script/bonus/extraEnergy.gd" id="1_c1afo"]
+[ext_resource type="Texture2D" uid="uid://dyy8ug4s4ehxm" path="res://Ressources/sprite/shooter/bonus/energy_Icon.png" id="2_001md"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5i5ah"]
+radius = 7.8874
+height = 24.6862
+
+[node name="extraEnegy" type="Node2D"]
+script = ExtResource("1_c1afo")
+
+[node name="Heart" type="Sprite2D" parent="."]
+scale = Vector2(0.216109, 0.206141)
+texture = ExtResource("2_001md")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.14106, 0.972202)
+shape = SubResource("CapsuleShape2D_5i5ah")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

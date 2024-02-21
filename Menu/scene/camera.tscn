@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmv5itos2472a"]
+
+[ext_resource type="Script" path="res://Menu/script/camera.gd" id="1_qpwek"]
+
+[node name="camera" type="Node3D"]
+script = ExtResource("1_qpwek")
+
+[node name="Cam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.776046, 0.630676, 0, -0.630676, 0.776046, 0.0815073, 5.99041, 8)

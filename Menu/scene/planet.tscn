@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxnfnkm0yy00h"]
+
+[ext_resource type="Script" path="res://Menu/script/planete.gd" id="1_gd8d3"]
+[ext_resource type="Material" uid="uid://dc836ha1432ti" path="res://Ressources/material/Jaune.tres" id="2_r43ar"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imm2u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_flv73"]
+material = SubResource("StandardMaterial3D_imm2u")
+
+[node name="planet_racine" type="Node3D"]
+script = ExtResource("1_gd8d3")
+
+[node name="planet" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_r43ar")
+mesh = SubResource("SphereMesh_flv73")
+
+[node name="light" type="OmniLight3D" parent="planet"]
+light_energy = 5.0
+omni_range = 50.0

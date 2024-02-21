@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://fsignbyk3pox"]
+
+[ext_resource type="Script" path="res://Survivor/Player/Attack/laser_saber.gd" id="1_xeebb"]
+[ext_resource type="Texture2D" uid="uid://cabrtpshuql3v" path="res://Ressources/Survivor/Texture/Items/Weapons/laserSaber.png" id="2_xu6ae"]
+[ext_resource type="AudioStream" uid="uid://cvnidx0spgok0" path="res://Ressources/Survivor/Audio/SoundEffect/woosh.wav" id="3_1ej03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ojwf"]
+size = Vector2(4.24264, 32.5269)
+
+[node name="laser_saber" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xeebb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xu6ae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_5ojwf")
+disabled = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="ChangeDirection" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="ResetPosTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="snd_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1ej03")
+bus = &"FX"
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ChangeDirection" to="." method="_on_change_direction_timeout"]
+[connection signal="timeout" from="ResetPosTimer" to="." method="_on_reset_pos_timer_timeout"]
